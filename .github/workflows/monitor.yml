@@ -1,0 +1,37 @@
+name: Monitor LEV PDF Updates
+
+on:
+  schedule:
+    # 每天台灣時間早上 9:00 執行一次（GitHub 排程用 UTC，台灣是 UTC+8）
+    - cron: '0 1 * * *'
+  workflow_dispatch: {}   # 允許在網頁上手動點擊執行，方便測試
+
+permissions:
+  contents: write   # 需要把資料檔與頁面寫回 repo
+
+jobs:
+  check-and-publish:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 簽出 repo
+        uses: actions/checkout@v4
+
+      - name: 設定 Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: 安裝依賴套件
+        run: pip install -r requirements.txt
+
+      - name: 執行監控腳本並產生頁面
+        run: python monitor_pdf_updates.py
+
+      - name: 把更新的資料與頁面提交回 repo
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add pdf_state.json pdf_text_cache.json history.json discovered_links_debug.json docs/index.html
+          git diff --cached --quiet && echo "無變更，不需 commit" || git commit -m "更新每日 PDF 比對結果 [skip ci]"
+          git push

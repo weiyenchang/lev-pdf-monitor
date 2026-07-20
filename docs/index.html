@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>電動機車補助網 ・ PDF 異動公報</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@500;700;900&family=Noto+Sans+TC:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #EFEDE6; --paper-line: #DCD8CC; --ink: #1C2B3A; --ink-soft: #4B5A6B;
+    --seal: #A6362C; --seal-soft: #E7D6D2; --sage: #4C6B54; --sage-soft: #DCE4DC;
+    --amber: #8A6A2E; --amber-soft: #EAE0C8;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--paper);
+    background-image: repeating-linear-gradient(0deg, rgba(28,43,58,0.025) 0px, rgba(28,43,58,0.025) 1px, transparent 1px, transparent 3px);
+    color: var(--ink); font-family: "Noto Sans TC", sans-serif; -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 780px; margin: 0 auto; padding: 56px 24px 120px; }
+  header.masthead { border-top: 3px solid var(--ink); border-bottom: 1px solid var(--ink); padding: 20px 0 18px; margin-bottom: 8px; }
+  .eyebrow { font-family: "IBM Plex Mono", monospace; font-size: 12px; letter-spacing: 0.12em; color: var(--ink-soft); display: flex; justify-content: space-between; margin-bottom: 10px; }
+  h1 { font-family: "Noto Serif TC", serif; font-weight: 900; font-size: 34px; line-height: 1.3; margin: 0 0 8px; }
+  .subtitle { font-size: 14px; color: var(--ink-soft); margin: 0 0 14px; }
+  .subtitle a { color: var(--ink-soft); }
+  .scope-list { margin: 0; padding-left: 18px; font-size: 12.5px; color: var(--ink-soft); line-height: 1.9; }
+  .stats-row {
+    display: flex; gap: 28px; margin: 28px 0 40px; padding: 16px 0;
+    border-top: 1px solid var(--paper-line); border-bottom: 1px solid var(--paper-line);
+    font-family: "IBM Plex Mono", monospace; flex-wrap: wrap;
+  }
+  .stat .num { font-family: "Noto Serif TC", serif; font-size: 26px; font-weight: 700; display: block; }
+  .stat .label { font-size: 11px; color: var(--ink-soft); letter-spacing: 0.06em; }
+  .ledger-entry { border-bottom: 1px solid var(--paper-line); }
+  .ledger-entry summary {
+    list-style: none; cursor: pointer; display: grid; grid-template-columns: 96px 1fr auto;
+    align-items: center; gap: 16px; padding: 18px 4px;
+  }
+  .ledger-entry summary::-webkit-details-marker { display: none; }
+  .ledger-entry summary:hover { background: rgba(28,43,58,0.03); }
+  .entry-date { font-family: "Noto Serif TC", serif; }
+  .entry-day { font-size: 28px; font-weight: 700; display: block; line-height: 1; }
+  .entry-month { font-size: 11px; color: var(--ink-soft); display: block; margin-top: 4px; font-family: "IBM Plex Mono", monospace; }
+  .entry-mid { display: flex; align-items: center; gap: 12px; }
+  .stamp {
+    font-family: "Noto Serif TC", serif; font-weight: 700; font-size: 13px; width: 52px; height: 52px;
+    border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    border: 2px solid currentColor; transform: rotate(-8deg); flex-shrink: 0;
+  }
+  .stamp--active { color: var(--seal); background: var(--seal-soft); }
+  .stamp--quiet { color: var(--sage); background: var(--sage-soft); opacity: 0.75; }
+  .entry-summary { font-size: 14px; color: var(--ink-soft); }
+  .entry-time { font-family: "IBM Plex Mono", monospace; font-size: 11px; color: var(--ink-soft); white-space: nowrap; }
+  .entry-body { padding: 4px 4px 24px 112px; }
+  .no-change { font-size: 13px; color: var(--ink-soft); margin: 0; }
+  .diff-group { margin-bottom: 20px; }
+  .diff-label { font-family: "IBM Plex Mono", monospace; font-size: 12px; font-weight: 500; margin: 0 0 10px; display: flex; align-items: center; gap: 8px; }
+  .diff-count { background: var(--ink); color: var(--paper); border-radius: 10px; padding: 1px 8px; font-size: 11px; }
+  .diff-group--added .diff-label { color: var(--sage); }
+  .diff-group--removed .diff-label { color: var(--seal); }
+  .diff-group--changed .diff-label { color: var(--amber); }
+  .cat-badge {
+    font-family: "IBM Plex Mono", monospace; font-size: 10px; color: var(--ink-soft);
+    border: 1px solid var(--paper-line); border-radius: 3px; padding: 1px 6px; white-space: nowrap;
+  }
+  .file-list { list-style: none; margin: 0; padding: 0; }
+  .file-list li { display: flex; align-items: baseline; gap: 10px; padding: 8px 0; border-bottom: 1px dashed var(--paper-line); font-size: 13px; }
+  .fname { color: var(--ink); flex: 1; }
+  .furl { font-family: "IBM Plex Mono", monospace; font-size: 11px; color: var(--ink-soft); text-decoration: none; white-space: nowrap; flex-shrink: 0; }
+  .furl:hover { color: var(--seal); }
+  .changed-file { background: rgba(255,255,255,0.5); border: 1px solid var(--paper-line); border-radius: 4px; padding: 14px 16px; margin-bottom: 12px; }
+  .changed-file__head { display: flex; align-items: baseline; gap: 10px; margin-bottom: 10px; font-size: 13px; }
+  .changed-file__head .fname { flex: 1; }
+  .diff-note { font-size: 12px; color: var(--ink-soft); margin: 0; }
+  .diff-block { font-family: "IBM Plex Mono", monospace; font-size: 12.5px; line-height: 1.7; background: #fff; border-radius: 3px; overflow: hidden; border: 1px solid var(--paper-line); }
+  .diff-line { padding: 2px 12px; white-space: pre-wrap; word-break: break-word; }
+  .diff-marker { display: inline-block; width: 16px; font-weight: 700; }
+  .diff-add { background: var(--sage-soft); color: #2E4A34; }
+  .diff-remove { background: var(--seal-soft); color: #6E2620; text-decoration: line-through; text-decoration-color: rgba(110,38,32,0.4); }
+  .diff-more { font-size: 11px; color: var(--ink-soft); margin: 8px 0 0; }
+  footer { margin-top: 48px; padding-top: 16px; border-top: 1px solid var(--paper-line); font-size: 12px; color: var(--ink-soft); font-family: "IBM Plex Mono", monospace; }
+  @media (max-width: 600px) {
+    .ledger-entry summary { grid-template-columns: 64px 1fr; }
+    .entry-time { grid-column: 1 / -1; }
+    .entry-body { padding-left: 76px; }
+    h1 { font-size: 26px; }
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="masthead">
+      <div class="eyebrow">
+        <span>PDF 異動公報 ・ AUTO-GENERATED</span>
+        <span>NO.0001</span>
+      </div>
+      <h1>電動機車補助網<br>指定類別 PDF 異動紀錄</h1>
+      <p class="subtitle">
+        每日自動比對
+        <a href="https://meid.nat.gov.tw/lev/regulations/download" target="_blank" rel="noopener">https://meid.nat.gov.tw/lev/regulations/download</a>
+        中下列三類文件的文字內容：
+      </p>
+      <ul class="scope-list"><li>電動機車測試申請程序與相關表單</li><li>經濟部受認可電動機車申請表</li><li>電動機車能源補充設施補助作業流程及相關申請文件</li></ul>
+    </header>
+
+    <div class="stats-row">
+      <div class="stat"><span class="num">1</span><span class="label">追蹤天數</span></div>
+      <div class="stat"><span class="num">0</span><span class="label">發現異動天數</span></div>
+      <div class="stat"><span class="num">2026-07-20</span><span class="label">最近檢查日期</span></div>
+      <div class="stat"><span class="num">15:53</span><span class="label">最近檢查時間</span></div>
+    </div>
+
+    <main>
+      
+    <details class="ledger-entry" >
+      <summary>
+        <div class="entry-date">
+          <span class="entry-day">20</span>
+          <span class="entry-month">2026年07月 ・ 星期一</span>
+        </div>
+        <div class="entry-mid">
+          <span class="stamp stamp--quiet">無異動</span>
+          <span class="entry-summary">本日內容與前次相同</span>
+        </div>
+        <span class="entry-time">檢查時間 15:53</span>
+      </summary>
+      <div class="entry-body"><p class="no-change">與前一次檢查內容一致，未發現新增、移除或更新的 PDF 檔案。</p></div>
+    </details>
+    </main>
+
+    <footer>本頁面由 GitHub Actions 每日自動產生・僅監控指定三大類別文件・文字比對僅供快速預覽，正式內容請以原始 PDF 為準</footer>
+  </div>
+</body>
+</html>

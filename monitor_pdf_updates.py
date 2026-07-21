@@ -270,27 +270,21 @@ def check_updates():
             "category": old_info.get("category"),
         })
 
-    # --- 既有檔案：Header 快篩，有疑慮才下載比對 ---
+    # --- 既有檔案：一律下載後用雜湊值判斷是否變更 ---
+    #
+    # 注意：這個網站有個特性——PDF 內容會變動，但 Content-Length /
+    # Last-Modified / ETag 等 Header 資訊不會跟著變。因此不能再用
+    # 「Header 沒變就跳過下載」這種快篩，否則會漏掉真正的內容變更。
+    # 改成每次都下載、用檔案內容本身的 SHA-256 雜湊值來判斷有沒有變化，
+    # Header 資訊只留作紀錄參考，不影響判斷邏輯。
     for url in current_urls & old_urls:
         info = current_links[url]
         name, category = info["name"], info["category"]
         old_info = old_state[url]
-        head_info = get_head_info(url)
-
-        header_same = (
-            head_info["content_length"] == old_info.get("content_length")
-            and head_info["last_modified"] == old_info.get("last_modified")
-            and head_info["etag"] == old_info.get("etag")
-            and head_info["last_modified"] is not None
-        )
-
-        if header_same:
-            new_state[url] = {**old_info, "name": name, "category": category}
-            new_text_cache[url] = old_text_cache.get(url, "")
-            continue
 
         content = download_file(url)
         file_hash = hash_bytes(content)
+        head_info = get_head_info(url)  # 僅供記錄，不用來判斷是否略過
 
         if file_hash == old_info.get("hash"):
             new_state[url] = {
